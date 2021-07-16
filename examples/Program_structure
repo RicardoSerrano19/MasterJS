@@ -1,0 +1,11 @@
+let caught = 5 * 5;
+console.log(caught * caught)
+
+let mood = "light";
+console.log(mood);
+mood = "dark";
+console.log(mood)
+
+let luigisDebit = 140;
+luigisDebit = luigisDebit - 35
+console.log(luigisDebit)

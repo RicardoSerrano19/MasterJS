@@ -1,0 +1,39 @@
+//Numbers
+console.log(Number.MAX_VALUE)
+console.log(2.998e8)
+console.log(100+4*11)
+console.log((100+4)*11)
+console.log(0/0)
+console.log(Infinity)
+console.log(NaN)
+
+//Strings
+console.log(`Backticks`);
+console.log("Double Quotes");
+console.log('Single Quotes');
+console.log("This is the first line\nThis is the second line");
+console.log("A newline character is written like \"\\n\".")
+console.log(`The half of 100 is ${100/2}`) //String literals
+console.log(typeof 4.5);
+console.log(typeof "x");
+console.log(typeof [1,2,3,4,5]);
+console.log(typeof Math)
+console.log(typeof NaN)
+
+//Boolean
+console.log(3 > 2)
+console.log(10 > 32)
+console.log("Alberto" < "Albino")
+console.log("1" == 1)
+console.log("1" === 1)
+
+console.log(4 || 3123) //Izquierda puede convertirse a true
+console.log(NaN && 3123) //Izquierda puede convertirse a false (NaN, undefined, null, 0, "")
+console.log(1 + 1 == 2 && 10 * 10 > 50)
+console.log(true ? 1 : 2) //Ternary operator
+
+const name = (name) =>{
+  console.log(name || "default")
+}
+
+name(false)
