@@ -9,3 +9,57 @@ console.log(mood)
 let luigisDebit = 140;
 luigisDebit = luigisDebit - 35
 console.log(luigisDebit)
+            
+let one = 1, two = 2;
+console.log(one + two)
+
+let theNumber = Number("1");
+if (!Number.isNaN(theNumber)) {
+  console.log(`Your number is ${theNumber}`)
+}else{
+  console.log("Is not a number")
+}
+
+let viewers = 2152;
+if(viewers < 1000){
+  console.log(viewers)
+}else if(viewers > 1000 && viewers < 1000000){
+    console.log((viewers/1000).toFixed(1) + "k");
+}
+else if(viewers > 1000000){
+    console.log((viewers/1000000).toFixed(1) + "M");
+}
+
+let counter = 0;
+let result = 1;
+while(counter < 10){
+  result = result * 2;
+  counter++;
+}
+console.log(`2 to the 10th power is : ${result}`);
+
+
+for(let current = 0; current < 5; current++){
+  console.log(current)
+}
+
+const WEATHER_MODS = {
+  rainy: "rainy",
+  sunny: "sunny",
+  cloudy: "cloudy"
+}
+
+let wheater = WEATHER_MODS.sunny;
+switch (wheater){
+  case WEATHER_MODS.rainy:
+    console.log("Remember to bring an umbrella.");
+    break;
+  case WEATHER_MODS.sunny:
+    console.log("Dress lightly");
+  case WEATHER_MODS.cloudy:
+    console.log("Go outside");
+    break;
+  default:
+    console.log("Unknown weather type");
+    break;
+}
