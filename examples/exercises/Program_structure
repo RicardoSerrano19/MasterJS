@@ -1,1 +1,23 @@
-f
+//Exercise 1
+for(let triangle = "#"; triangle.length < 8; triangle += "#"){
+  console.log(triangle)
+}
+
+//Exercise 2
+for(let i = 1; i <= 100; i++){
+  //console.log((i % 3 == 0 ? "Fizz": "") + (i % 5 == 0 ? "Buzz": "") || i);
+}
+
+//Exercise 3
+const size = 8;
+let chessboard = "";
+
+for(let i = 0; i < size; i++){ 
+  if(i % 2 == 0) chessboard+= " ";
+   for(let j = 0; j < size; j++){
+     chessboard += (j % 2 == 0) ? "#" : " ";
+  }
+  chessboard += "\n";
+}
+
+
