@@ -1,0 +1,19 @@
+
+const square = function(x) {
+  return x * x;
+};
+square(3)
+
+const makeNoise = function(){
+  console.log("Ruiiidoooo!");
+};
+makeNoise();
+
+const power = function(base, exponent){
+  let result = 1;
+  for(let i = 0; i < exponent; i++){
+   result *= base; 
+  }
+  return result;
+}
+power(2,8)
