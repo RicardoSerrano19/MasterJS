@@ -1,0 +1,44 @@
+//Smallest argument
+const min = (num1, num2) => (num1 < num2) ? num1 : num2;
+min(200, 150);
+
+//Recursion
+const isEven = number => {
+  if(number < 0) return isEven(-number);
+  if(number == 0) return true;
+  if (number == 1) return false;
+  return isEven(number - 2)
+}
+isEven(50)
+isEven(75)
+isEven(-1)
+
+//Bean Counting
+/*const countBs = function(str){
+  let countUppercase = 0;
+  for(let i = 0; i < str.length; i++){
+    let decimalVal = str.charCodeAt(i);
+    if(decimalVal >= 65 && decimalVal <= 90) countUppercase++
+  }
+  return countUppercase;
+}*/
+
+const countBs = function(str){
+  let count = 0;
+  for(let i = 0; i < str.length; i++)
+    str[i] === "B" ? count++ : 0;
+  
+  return count
+}
+countBs("BuBlBmBaB")
+
+const countChar = function(str, char){
+  let count = 0;
+  for(let i = 0; i < str.length; i++)
+    str[i] === char ? count++ : 0;
+  
+  return count
+}
+countChar("BuBlBmBaBCD", "D")
+
+

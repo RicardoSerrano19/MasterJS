@@ -1,4 +1,5 @@
 
+//Binding: AQui primero tiene que ir la declaracion, antes que la llamada
 const square = function(x) {
   return x * x;
 };
@@ -17,3 +18,129 @@ const power = function(base, exponent){
   return result;
 }
 power(2,8)
+
+const hummus = function(factor){
+  const ingredient = function(amount, unit, name){
+    let ingredientAmount = amount * factor;
+    if(ingredientAmount > 1) unit+= "s"
+    
+    console.log(`${ingredientAmount} ${unit} ${name}`);
+  };
+  
+  ingredient(1, "can", "chickpeas");
+  ingredient(0.25, "cup", "tahini");
+  ingredient(0.25, "cup", "lemon juice");
+  ingredient(1, "clove", "garlic");
+  ingredient(2, "tablespoon", "olive oil");
+  ingredient(0.5, "teaspoon", "cumin");
+};
+hummus(1)
+
+//Declaration notation: NO importa si la declaracion esta abajo de la llamada
+console.log("The future says: " + future());
+function future(){
+  return "You will never have flying cars";
+}
+
+//Arrow functions
+const powerArrowFunction = (base, exponent) => {
+  let result = 1;
+  for(let i = 0; i < exponent; i++){
+    result*= base;
+  }
+  return result;
+}
+powerArrowFunction(2,8);
+
+//Si solo es un parametro se puede omitir los parentesis, y el return en 1 linea
+const square1 = (x) => {return x*x;};
+const square2 = x => x * x;
+square1(4);
+square2(5)
+
+//Cuando no tiene parametros, solo es un parentesis vacio
+const horn = () => "Toot";
+horn()
+
+//Closure -> Retornar una funcion
+function multiplierFunction(factor){
+  return function(number){
+    return number * factor;
+  } 
+}
+let twice1 = multiplier(10);
+twice1(3)
+
+//Opion 2 con arrow function
+function multiplier(factor){
+  return number => number * factor
+}
+
+let twice = multiplier(2);
+twice(5)
+
+//Recursion ->  Is three times slower than loop
+const powerRecursion = function(base, exponent){
+  if(exponent === 0){
+      return 1;
+  }else{
+    return base * powerRecursion(base, exponent - 1)
+  }
+}
+powerRecursion(2,3)
+
+//Growing functions
+function printCowsAndChikensOnFarm(cows, chickens){
+  function formatNumber(cant, animal){
+      if(cant < 10){
+        return `00${cant} ${animal}`;
+      }else if(cant < 100){
+        return `0${cant} ${animal}`;
+      }else{
+        console.log`${cant} ${animal}`;
+    }
+  }
+  return formatNumber(cows, "Cows") + " & " + formatNumber(chickens, "Chickens")
+}
+printCowsAndChikensOnFarm(7,11)
+
+function printCowsAndChikensOnFarm2(cows, chickens){
+  function formatNumber(cant, animal){
+      let cantString = String(cant);
+      while(cantString.length < 3){
+        cantString = "0" + cantString;
+      }
+      return `${cantString} ${animal}`;
+  }
+  return formatNumber(cows, "Cows") + " & " + formatNumber(chickens, "Chickens")
+}
+printCowsAndChikensOnFarm2(7,11)
+
+//Accept more animals
+function zeroFormat(number, width){
+    let quantString = String(number);
+    while(quantString.length < width){
+      quantString = "0" + quantString;
+    }
+    return `${quantString}`;
+}
+
+function printAnimalsOnFarm(animals){
+  animals.forEach(animal =>{
+    console.log(`${zeroFormat(animal.quantity, 6)} ${animal.name}`);
+  })
+}
+
+let animals = [
+  {name: "Cows", quantity: 639}, 
+  {name: "Chikens", quantity: 1145},
+  {name: "Pigs", quantity: 30365},
+  {name: "Sheep", quantity: 9832},
+  {name: "Horses", quantity: 45}
+]
+
+printAnimalsOnFarm(animals)
+
+
+
+
