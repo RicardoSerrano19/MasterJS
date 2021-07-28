@@ -1,0 +1,64 @@
+let listOfNumbers = [2, 3, 5, 7, 11];
+listOfNumbers[2];
+listOfNumbers[5 - 1];
+
+let doh = 'DOH';
+doh.toUpperCase;
+doh.toUpperCase();
+
+//Methods
+let sequence = [1, 2, 3];
+sequence.push(4);
+sequence.push(5);
+sequence;
+sequence.pop();
+sequence;
+
+//Squirrele
+let day1 = {
+  squirrel: false,
+  events: ['work', 'touched tree', 'pizza', 'running'],
+};
+day1.squirrel;
+console.log(day1.wolf);
+day1.wolf = false;
+day1.wolf;
+day1;
+
+let descriptions = {
+  work: 'Went to work',
+  'touched tree': 'Touched a tree',
+};
+descriptions;
+descriptions.work;
+descriptions['touched tree'];
+descriptions['work'];
+
+delete descriptions.work;
+descriptions;
+
+//Encontrar propiedades que un objeto tiene
+let obj = {
+  x: 0,
+  y: 0,
+  z: 2,
+};
+Object.keys(obj);
+'x' in obj;
+'r' in obj;
+Object.assign(obj, { r: 1, s: 4 });
+
+//Mutability
+let object1 = { value: 10 };
+let object2 = object1;
+let object3 = { value: 10 };
+object1 == object2;
+object1 == object3;
+object1.value = 15;
+object2;
+
+//El objeto no puede cambiar, pero si sus valores
+const score = { visitors: 0, home: 0 };
+score.visitors = 1;
+score.home = { cantera: [33, 12, 11], noCantera: 3 };
+//score = { visitors: 0 };
