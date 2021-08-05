@@ -14,13 +14,13 @@ async function getCocktailsStartsWith(letter) {
 
 getCocktailsStartsWith('g').then(cocktails => {
   listCocktails = cocktails;
-  let strListCocktails = "";
+  let strListCocktails = [];
   //console.log('** Cocktails beginning with G:**')
   listCocktails.drinks.forEach(drink => {
-    strListCocktails+= "\"" + drink.strDrink +  "\",";
+    strListCocktails.push(drink.strDrink);
   })
   //console.log("Total:" + listCocktails.drinks.length);
-  //console.log(strListCocktails);
+  console.log(strListCocktails.join(","));
   
   getExtravagantCocktails(listCocktails);
 });
