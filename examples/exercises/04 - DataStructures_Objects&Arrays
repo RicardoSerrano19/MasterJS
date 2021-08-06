@@ -1,19 +1,112 @@
 //Sum of a range
 const range = (start, end, step = 1) => {
   let array = [];
-  if(end < start) return "End is grather than start"
-  while(start <= end) 
-    array.push(start++);
+  if(step > 0){
+    for(let i = start; i <= end; i+=step)
+      array.push(i)
+  }else{
+    for(let i = start; i >= end; i+=step)
+      array.push(i)
+  }
   return array;
 }
 
 const sum = array =>{
   let count = 0;
-  for(let number of array){
-    count+= number;
-  }
+  for(let number of array) count+= number;
   return count;
 }
-sum(range(1,10))
+//range(5,2,-1);
+//sum(range(1,10)); 
 
+//Reversing an Array
+const reverseArray = array =>{
+  const newArray = [];
+  for(let el of array) newArray.unshift(el);
+  return newArray;
+}
+
+const reverseArrayInPlace = array =>{
+  let first = 0;
+  let last = array.length-1;
+  let middle = Math.floor(array.length / 2);
+  while(first < middle){
+    let aux = array[first];
+    array[first++] = array[last];
+    array[last--] = aux;
+  }
+  return array;
+}
+
+//reverseArrayInPlace([1,2,3,4,5,6])
+
+//A list
+let list = {
+  value: 1,
+  rest: {
+    value: 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+};
+
+const arrayToList = array => {
+  let list = {};  
+  for(let i = array.length-1; i >= 0; i--)
+    list = { value: array[i], rest: (i == array.length-1) ? null: list};
+  
+  return list;
+};
+
+const listToArray = list =>{
+  let array = [];
+  while(list !== null){
+    array.push(list.value)
+    list = list.rest;
+  }
+  return array;
+}
+
+const prepend = (element, list) => {
+  let newList = {value: element, rest: list}
+  return newList;
+}
+
+const nth = (list, position) =>{
+  let current = 0;
+  if(position < 0) return undefined;
+  while(list !== null){
+    if(current === position){
+      return list.value
+    }
+    else{
+      list = list.rest;
+      current++;
+    }
+  }
+  return undefined;
+}
+
+const nthRecursivo = (list, position, current = 0) => {
+  if(position < 0 || list === null) return undefined;
+  
+  if(position == current)
+    return list.value;
+  else
+    return nthRecursivo(list.rest, position, current+1);
+}
+
+let newList = []; 
+console.log("Array to list");
+newList = arrayToList([1,2,3]);
+console.log("List to array");
+listToArray(newList);
+console.log("Prepend array");
+newList = prepend(5, newList)
+console.log("Nth");
+nth(newList, 1)
+console.log("Nth recursivo");
+nthRecursivo(newList, 0);
 
