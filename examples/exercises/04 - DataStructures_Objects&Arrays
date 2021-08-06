@@ -1,0 +1,19 @@
+//Sum of a range
+const range = (start, end, step = 1) => {
+  let array = [];
+  if(end < start) return "End is grather than start"
+  while(start <= end) 
+    array.push(start++);
+  return array;
+}
+
+const sum = array =>{
+  let count = 0;
+  for(let number of array){
+    count+= number;
+  }
+  return count;
+}
+sum(range(1,10))
+
+
