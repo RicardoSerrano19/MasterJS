@@ -102,3 +102,4 @@ them to return a new memory. Thus, the thing a robot returns is an
 object containing both the direction it wants to move in and a memory
 value that will be given back to it the next time it is called.
 */
+
