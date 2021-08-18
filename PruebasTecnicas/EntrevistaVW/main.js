@@ -2,6 +2,7 @@
 const txtInput = document.querySelector('#txtInput');
 const btnGuardar = document.querySelector('#btnGuardar');
 const listaMensajes = document.querySelector('#listaMensajes');
+const convertirCapitalize = document.querySelector('#convertirCapitalize');
 
 btnGuardar.addEventListener('click', (e) =>{
     e.preventDefault();
@@ -10,4 +11,8 @@ btnGuardar.addEventListener('click', (e) =>{
     listElement.appendChild(textNode);
     listaMensajes.appendChild(listElement);
     txtInput.value = "";
+});
+
+convertirCapitalize.addEventListener('click', (e) =>{
+    listaMensajes.classList.toggle('capitalize');
 });
