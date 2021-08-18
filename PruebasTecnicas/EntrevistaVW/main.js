@@ -19,8 +19,6 @@ btnGuardar.addEventListener('click', (e) =>{
 */
 
 convertirCapitalize.addEventListener('click', (e) =>{
-    
-
    const list = listaMensajes.children;
    for(let element of list){
        let listWords = element.textContent.trim().split(" ")
