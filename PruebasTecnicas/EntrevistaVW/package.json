@@ -5,6 +5,7 @@
   "main": "main.js",
   "dependencies": {},
   "devDependencies": {
+    "@s-ui/mono": "2",
     "eslint": "^7.32.0"
   },
   "scripts": {
