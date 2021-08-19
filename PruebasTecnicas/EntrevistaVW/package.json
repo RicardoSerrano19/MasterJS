@@ -1,0 +1,16 @@
+{
+  "name": "entrevistavw",
+  "version": "1.0.0",
+  "description": "Entrevista",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --fix"
+  },
+  "author": "RicardoSerrano19",
+  "license": "ISC"
+}
