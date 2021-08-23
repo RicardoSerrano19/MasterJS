@@ -209,3 +209,18 @@ console.log("Not a valid direction. Try again.");
 throw e;
 }
 }
+
+/* 📃 Assertions
+  # Assertions are checks inside a program that verify that something is the
+way it is supposed to be. hey are used not to handle situations that
+can come up in normal operation but to find programmer mistakes
+*/
+function firstElement(array) {
+if (array.length == 0) {
+throw new Error("firstElement called with []");
+}
+return array[0];
+}
+
+console.log(firstElement([1,2,3])) // → 1
+console.log(firstElement([])) // → Error: firstElement called with []
