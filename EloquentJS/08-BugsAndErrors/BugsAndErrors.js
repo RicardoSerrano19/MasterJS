@@ -101,3 +101,38 @@ function lastElement(array) {
 
 console.log(lastElement([])); // -> { success: false }
 console.log(lastElement([1, 2, 3])); // -> { element: 3, success: true }
+
+/* 📃 Exceptions
+  # When a function cannot proceed normally, what we would like to do
+is just stop what we are doing and immediately jump to a place that
+knows how to handle the problem
+*/
+
+function convertDirection(direction) {
+  if (direction.toLowerCase() == 'left') return 'L';
+  if (direction.toLowerCase() == 'right') return 'R';
+  throw new Error('Invalid direction: ' + direction);
+}
+console.log(convertDirection('Right')); // → R
+console.log(convertDirection('LEft')); // → L
+//console.log(convertDirection('NoDirection')); // → Error: Invalid direction: NoDirection
+
+function look(direction) {
+  if (convertDirection(direction) == 'L') {
+    return 'A house';
+  } else {
+    return 'two angry bears';
+  }
+}
+
+try {
+  console.log('You see: ' + look('Left')); // → 'You see: A house'
+} catch (error) {
+  console.log('Something went wrong: ' + error);
+}
+
+try {
+  console.log('You see: ' + look('Up'));
+} catch (error) {
+  console.log('Something went wrong: ' + error); // → 'Something went wrong: Error: Invalid direction: Up'
+}
