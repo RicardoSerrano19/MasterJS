@@ -59,17 +59,45 @@ test('convert Latin text (myname) to uppercase', () => {
 // →'Failed: convert Latin text (myname) to uppercase'
 
 /* 📃 Debugging
-  # 
+  # The process of finding mistakes -bugs- in programs is called debuging
+  - Putting a console.log in strategic place is good way to get a adittional informacion
+  - Use a browser debugger
 */
 function numberToString(n, base = 10) {
-let result = "", sign = "";
-if (n < 0) {
-sign = "-";
-n = -n;
+  let result = '',
+    sign = '';
+  if (n < 0) {
+    sign = '-';
+    n = -n;
+  }
+  do {
+    result = String(n % base) + result;
+    n = Math.floor(n / base);
+  } while (n > 0);
+  return sign + result;
 }
-do {
-result = String(n % base) + result;
-n /= base;
-211} while (n > 0);
-return sign + result;
+
+console.log(numberToString(13, 2));
+
+/* 📃 Error propagation
+  # 
+*/
+function promptNumber(question) {
+  let result = Number(prompt(question));
+  if (Number.isNaN(result)) return null;
+  else return result;
 }
+//console.log(promptNumber('How many trees do you see?'));
+
+// -> The caller should be explicity take error returning a special value to indicate the error.
+
+function lastElement(array) {
+  if (array.length == 0) {
+    return { success: false };
+  } else {
+    return { element: array[array.length - 1], success: true };
+  }
+}
+
+console.log(lastElement([])); // -> { success: false }
+console.log(lastElement([1, 2, 3])); // -> { element: 3, success: true }
