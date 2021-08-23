@@ -131,8 +131,61 @@ try {
   console.log('Something went wrong: ' + error);
 }
 
-try {
+/*try {
   console.log('You see: ' + look('Up'));
 } catch (error) {
   console.log('Something went wrong: ' + error); // → 'Something went wrong: Error: Invalid direction: Up'
+}*/
+
+/* 📃 Cleaning up after exceptions
+  # Using Try, catch, finally
+*/
+
+const accounts = {
+  a: 100,
+  b: 0,
+  c: 20,
+};
+
+function getAccount(accountName) {
+  if (!accounts.hasOwnProperty(accountName)) {
+    throw new Error(`No such account: ${accountName}`);
+  }
+  return accountName;
 }
+
+function transfer(from, to, amount) {
+  if (accounts[from] < amount) return;
+  accounts[from] -= amount;
+  accounts[getAccount(to)] += amount;
+}
+
+// → Happy path
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+transfer('a', 'b', 5);
+console.log(accounts); // → { a: 95, b: 5, c: 20 }
+
+// → Wrong
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+//transfer('a', 'd', 5); // → Error: No such account: d
+console.log(accounts); // → { a: 95, b: 0, c: 20 } - Makes money dissapear
+
+function transferRefactor(from, to, amount) {
+  if (accounts[from] < amount) return;
+  let progress = 0;
+  try {
+    accounts[from] -= amount;
+    progress = 1;
+    accounts[getAccount(to)] += amount;
+    progress = 2;
+  } finally {
+    if (progress == 1) {
+      accounts[from] += amount;
+    }
+  }
+}
+
+
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+// transferRefactor('a', 'd', 10); → Error: No such account: d - Finally executes returning the amount to from account
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
