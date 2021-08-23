@@ -185,7 +185,27 @@ function transferRefactor(from, to, amount) {
   }
 }
 
-
 console.log(accounts); // → { a: 100, b: 0, c: 20 }
 // transferRefactor('a', 'd', 10); → Error: No such account: d - Finally executes returning the amount to from account
 console.log(accounts); // → { a: 100, b: 0, c: 20 }
+
+/* 📃 Selective catching
+  # Using specific class to identify the error
+*/
+class InputError extends Error {}
+function convertDirection(direction) {
+  if (direction.toLowerCase() == 'left') return 'L';
+  if (direction.toLowerCase() == 'right') return 'R';
+  throw new InputError('Invalid direction: ' + direction);
+}
+
+try {
+let dir = convertDirection('L'); // ← typo!
+  console.log('You chose ', dir);
+} catch (e) {
+if (e instanceof InputError) {
+console.log("Not a valid direction. Try again.");
+} else {
+throw e;
+}
+}
