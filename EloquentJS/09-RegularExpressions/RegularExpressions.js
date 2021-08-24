@@ -46,3 +46,26 @@ let notBinary = /[^01]/;
 console.log(notBinary.test('110010001000101000110')); // → false
 console.log(notBinary.test('110010001000121000110')); // → true
 // 🧩 [^] → Any character except the ones in the set
+
+/* 📃 Repeating parts of a pattern
+  # 
+*/
+
+console.log(/'\d+'/.test("'123'")); // → true
+console.log(/'\d+'/.test("''")); // → false
+// 🧩 + → Indicates that element may be repeated more than once
+
+console.log(/'\d*'/.test("'123'")); // → true
+console.log(/'\d*'/.test("''")); // → true
+// 🧩 * → Indicates that element may be repeated zero, one or more than once
+
+let neighbor = /neighbou?r/;
+console.log(neighbor.test('neighbour')); // → true
+console.log(neighbor.test('neighbor')); // → true
+// 🧩 ? → Indicates that element optional, always return true;
+
+let dateTimeRefactor = /\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/;
+console.log(dateTimeRefactor.test('1-30-2021 8:23')); // → true
+// 🧩 {n} → Requires it to occur 'n' times
+// 🧩 {n, m} → Specify a range occur at least 'n' and at most 'm' times
+// 🧩 {n, } → Requires it to ocurr 'n' or more times
