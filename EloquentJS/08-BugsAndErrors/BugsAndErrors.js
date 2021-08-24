@@ -101,3 +101,126 @@ function lastElement(array) {
 
 console.log(lastElement([])); // -> { success: false }
 console.log(lastElement([1, 2, 3])); // -> { element: 3, success: true }
+
+/* 📃 Exceptions
+  # When a function cannot proceed normally, what we would like to do
+is just stop what we are doing and immediately jump to a place that
+knows how to handle the problem
+*/
+
+function convertDirection(direction) {
+  if (direction.toLowerCase() == 'left') return 'L';
+  if (direction.toLowerCase() == 'right') return 'R';
+  throw new Error('Invalid direction: ' + direction);
+}
+console.log(convertDirection('Right')); // → R
+console.log(convertDirection('LEft')); // → L
+//console.log(convertDirection('NoDirection')); // → Error: Invalid direction: NoDirection
+
+function look(direction) {
+  if (convertDirection(direction) == 'L') {
+    return 'A house';
+  } else {
+    return 'two angry bears';
+  }
+}
+
+try {
+  console.log('You see: ' + look('Left')); // → 'You see: A house'
+} catch (error) {
+  console.log('Something went wrong: ' + error);
+}
+
+/*try {
+  console.log('You see: ' + look('Up'));
+} catch (error) {
+  console.log('Something went wrong: ' + error); // → 'Something went wrong: Error: Invalid direction: Up'
+}*/
+
+/* 📃 Cleaning up after exceptions
+  # Using Try, catch, finally
+*/
+
+const accounts = {
+  a: 100,
+  b: 0,
+  c: 20,
+};
+
+function getAccount(accountName) {
+  if (!accounts.hasOwnProperty(accountName)) {
+    throw new Error(`No such account: ${accountName}`);
+  }
+  return accountName;
+}
+
+function transfer(from, to, amount) {
+  if (accounts[from] < amount) return;
+  accounts[from] -= amount;
+  accounts[getAccount(to)] += amount;
+}
+
+// → Happy path
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+transfer('a', 'b', 5);
+console.log(accounts); // → { a: 95, b: 5, c: 20 }
+
+// → Wrong
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+//transfer('a', 'd', 5); // → Error: No such account: d
+console.log(accounts); // → { a: 95, b: 0, c: 20 } - Makes money dissapear
+
+function transferRefactor(from, to, amount) {
+  if (accounts[from] < amount) return;
+  let progress = 0;
+  try {
+    accounts[from] -= amount;
+    progress = 1;
+    accounts[getAccount(to)] += amount;
+    progress = 2;
+  } finally {
+    if (progress == 1) {
+      accounts[from] += amount;
+    }
+  }
+}
+
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+// transferRefactor('a', 'd', 10); → Error: No such account: d - Finally executes returning the amount to from account
+console.log(accounts); // → { a: 100, b: 0, c: 20 }
+
+/* 📃 Selective catching
+  # Using specific class to identify the error
+*/
+class InputError extends Error {}
+function convertDirection(direction) {
+  if (direction.toLowerCase() == 'left') return 'L';
+  if (direction.toLowerCase() == 'right') return 'R';
+  throw new InputError('Invalid direction: ' + direction);
+}
+
+try {
+let dir = convertDirection('L'); // ← typo!
+  console.log('You chose ', dir);
+} catch (e) {
+if (e instanceof InputError) {
+console.log("Not a valid direction. Try again.");
+} else {
+throw e;
+}
+}
+
+/* 📃 Assertions
+  # Assertions are checks inside a program that verify that something is the
+way it is supposed to be. hey are used not to handle situations that
+can come up in normal operation but to find programmer mistakes
+*/
+function firstElement(array) {
+if (array.length == 0) {
+throw new Error("firstElement called with []");
+}
+return array[0];
+}
+
+console.log(firstElement([1,2,3])) // → 1
+console.log(firstElement([])) // → Error: firstElement called with []
