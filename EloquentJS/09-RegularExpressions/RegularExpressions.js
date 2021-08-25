@@ -69,3 +69,21 @@ console.log(dateTimeRefactor.test('1-30-2021 8:23')); // → true
 // 🧩 {n} → Requires it to occur 'n' times
 // 🧩 {n, m} → Specify a range occur at least 'n' and at most 'm' times
 // 🧩 {n, } → Requires it to ocurr 'n' or more times
+
+/* 📃 Matches and groups
+  # Exec (execute) method that will return null if
+no match was found and return an object with information about the
+match otherwise
+*/
+
+let match = /\d+/.exec('one two 100');
+console.log(match); // → [ '100', index: 8, input: 'one two 100', groups: undefined ]
+console.log(match.index); // → 8
+
+console.log('one two 100'.match(/\d+/)); // → String method match expect RegExp and behaves similarly
+
+let quotedText = /'([^']*)'/;
+console.log(quotedText.exec("she said 'hello'")); // → [ "'hello'", 'hello', index: 9, input: "she said 'hello'", groups: undefined ]
+
+console.log(/bad(ly)?/.exec('bad')); // → ["bad", undefined]
+console.log(/(\d)+/.exec('123')); // → ["123", "3"]
