@@ -87,3 +87,22 @@ console.log(quotedText.exec("she said 'hello'")); // → [ "'hello'", 'hello', i
 
 console.log(/bad(ly)?/.exec('bad')); // → ["bad", undefined]
 console.log(/(\d)+/.exec('123')); // → ["123", "3"]
+
+/* 📃 The Date Class
+  # Date is a standard class for representing dates—or, rather, points
+in time.
+*/
+
+console.log(new Date()); // → Today
+console.log(new Date(2009, 11, 9)); // → Wed Dec 09 2009 00:00:00 GMT+0100 (CET)
+// → {year, month{0-11}, day, hours, minutes, seconds, miliseconds}
+
+console.log(new Date(1997, 05, 19).getTime());  // → 866696400000
+console.log(new Date(866696400000)); // → Thu Jun 19 1997 00:00:00 GMT-0500 (GMT-05:00)
+
+function getDate(string) {
+  let [completo, month, day, year] = /(\d{1,2})-(\d{1,2})-(\d{1,4})/.exec(string);
+  return new Date(year, month - 1, day);
+}
+
+console.log(getDate("1-30-2003"));// → Date Thu Jan 30 2003 00:00:00 GMT-0600 (GMT-06:00)
