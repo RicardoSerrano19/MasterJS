@@ -148,3 +148,46 @@ let regExpression = /\b\d+ (pig|cow|chicken)s?\b/;
 (ordered by where the branches appear in the regular expression) is
 used.
 */
+
+/* 📃 Replace method
+  # String values have a replace method that can be used to replace part
+of the string with another string. Can be a String or a RegExp, but if is string only the first ocurrence will be replaced.
+*/
+
+console.log("papa".replace("p", "m")); // → mapa (Only the first coincidence)
+
+console.log("papa".replace(/[p]/, "m")); // → mapa (Only the first coincidence)
+console.log("papa".replace(/[p]/g, "m")); // → mama (Using flag "g" all the coincidences)
+
+// 🧩 g → Global is used to match all matches
+console.log("Liskov, Barbara\nMcCarthy, John\nWadler, Philip");
+/* → Format {Lastname, Firstname}
+'Liskov, Barbara
+McCarthy, John
+Wadler, Philip'*/
+
+console.log(
+"Liskov, Barbara\nMcCarthy, John\nWadler, Philip"
+.replace(/(\w+), (\w+)/g, "$2 $1"));
+/* → Format {Firstname Lastname}
+'Barbara Liskov
+John McCarthy
+Philip Wadler'*/
+
+let s = "the cia and fbi";
+console.log(s.replace(/\b(fbi|cia)\b/g, str => str.toUpperCase()));
+// → the CIA and FBI
+
+let stock = "1 lemon, 2 cabbages, and 101 eggs";
+function minusOne(match, amount, unit) {
+  amount = Number(amount) - 1;
+  if (amount == 1) { // only one left, remove the 's'
+    unit = unit.slice(0, unit.length - 1);
+  } else if (amount == 0) {
+    amount = "no";
+  }
+  return amount + " " + unit;
+}
+console.log(stock.replace(/(\d+) (\w+)/g, minusOne)); // → no lemon, 1 cabbage, and 100 eggs'
+// (\d+) for amount
+// (\w+) for unit
