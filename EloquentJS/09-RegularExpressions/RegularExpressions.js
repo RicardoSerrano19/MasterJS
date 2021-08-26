@@ -84,6 +84,7 @@ console.log('one two 100'.match(/\d+/)); // → String method match expect RegEx
 
 let quotedText = /'([^']*)'/;
 console.log(quotedText.exec("she said 'hello'")); // → [ "'hello'", 'hello', index: 9, input: "she said 'hello'", groups: undefined ]
+// 🧩 () → Parenthesis is used to group
 
 console.log(/bad(ly)?/.exec('bad')); // → ["bad", undefined]
 console.log(/(\d)+/.exec('123')); // → ["123", "3"]
@@ -106,3 +107,14 @@ function getDate(string) {
 }
 
 console.log(getDate("1-30-2003"));// → Date Thu Jan 30 2003 00:00:00 GMT-0600 (GMT-06:00)
+
+/* 📃 Word and string boundaries
+  # 
+*/
+console.log(/cat/.test("concatenate")); // → true
+console.log(/\bcat\b/.test("cconcatenatet")); // → false
+
+// 🧩 \b → Start and end on a word boundary
+// 🧩 ^ → Matches the beggining of the String or line
+// 🧩 $ → Matches the end of the String or line
+
