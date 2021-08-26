@@ -139,3 +139,12 @@ let regExpression = /\b\d+ (pig|cow|chicken)s?\b/;
 · → boundary → digit → "cow"       → / → "s" → boundary → ·
                \__/  \ → "chicken" /   →  -  /
 */
+
+/* 📃 Backtracking
+  # Search engine search for match from the top branch to the bottom. If it find a match branch it doesnt look the rest of the branch.
+*/
+
+/* → The matcher stops as soon as it finds a full match. This means that if multiple branches could potentially match a string, only the first one
+(ordered by where the branches appear in the regular expression) is
+used.
+*/
