@@ -118,3 +118,12 @@ console.log(/\bcat\b/.test("cconcatenatet")); // → false
 // 🧩 ^ → Matches the beggining of the String or line
 // 🧩 $ → Matches the end of the String or line
 
+/* 📃 Choice patterns
+  # 
+*/
+
+let animalCount = /\b\d+ (pig|cow|chicken)s?\b/;
+console.log(animalCount.test("15 pigs")); // → true
+console.log(animalCount.test("15 pigchickens"));// → false
+
+// 🧩 | → Acts like a boolean OR
