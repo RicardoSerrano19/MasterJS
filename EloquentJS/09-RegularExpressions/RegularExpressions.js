@@ -127,3 +127,15 @@ console.log(animalCount.test("15 pigs")); // → true
 console.log(animalCount.test("15 pigchickens"));// → false
 
 // 🧩 | → Acts like a boolean OR
+
+/* 📃 The mechanics of matching
+  # The engine treats a regular expression
+something like a flow diagram
+*/
+
+let regExpression = /\b\d+ (pig|cow|chicken)s?\b/;
+/*                   
+                     / → "pig"     \   →  -  \
+· → boundary → digit → "cow"       → / → "s" → boundary → ·
+               \__/  \ → "chicken" /   →  -  /
+*/
