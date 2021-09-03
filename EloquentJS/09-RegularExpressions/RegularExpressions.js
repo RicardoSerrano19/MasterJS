@@ -191,3 +191,17 @@ function minusOne(match, amount, unit) {
 console.log(stock.replace(/(\d+) (\w+)/g, minusOne)); // → no lemon, 1 cabbage, and 100 eggs'
 // (\d+) for amount
 // (\w+) for unit
+
+/* 📃 Greed
+  # 
+*/
+
+function stripComments(code) {
+return code.replace(/\/\/.*|\/\*[^]*?\*\//g, "");
+}
+console.log(stripComments("1 + /* 2 */3"));
+// → 1 + 3
+console.log(stripComments("x = 10;// ten!"));
+// → x = 10;
+console.log(stripComments("1 /* a */+/* b */ 1"));
+// → 1 1
