@@ -36,7 +36,7 @@ console.log(/[0-9]/.test('in 1992')); // → true
 // 🧩 \D A character that is not a digit
 // 🧩 \W A nonalphanumeric character
 // 🧩 \S A nonwhitespace character
-// 🧩 . A nonwhitespace character
+// 🧩 . Any character except line breaks
 
 let dateTime = /\d\d-\d\d-\d\d\d\d \d\d:\d\d/; // → Match a date and time like 19-06-1997 12:20
 console.log(dateTime.test('01-30-2003 15:20')); // → true
