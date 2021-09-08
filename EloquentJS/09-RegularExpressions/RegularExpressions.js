@@ -233,3 +233,23 @@ sion was found, or -1 when it wasn’t found.
 console.log("  word".search(/\S/)); // → 2
 console.log("  ".search(/\S/)); // → -1
 
+/* 📃 LastIndex Property
+  # 
+*/
+let patternLastIndex = /y/g;
+console.log(patternLastIndex.lastIndex); // → 0
+patternLastIndex.lastIndex = 3;
+let matchLastIndex = patternLastIndex.exec("xyzzy");
+console.log(matchLastIndex.index); // → 4
+console.log(patternLastIndex.lastIndex); // → 5
+
+let global = /abc/g;
+console.log(global.exec("xyz abc")); // → ["abc"]
+let sticky = /abc/y;
+console.log(sticky.exec("xyz abc")); // → null
+
+let digit = /\d/g;
+console.log(digit.exec("here it is: 1")); // → ["1"]
+console.log(digit.exec("and now: 1")); // → null (return null because exec automatic update last index and doesnt find nothing after that index.)
+
+console.log("Banana".match(/an/g)); // → ["an", "an"]
