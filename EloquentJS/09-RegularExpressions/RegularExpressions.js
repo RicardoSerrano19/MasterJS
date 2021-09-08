@@ -205,3 +205,20 @@ console.log(stripComments("x = 10;// ten!"));
 // → x = 10;
 console.log(stripComments("1 /* a */+/* b */ 1"));
 // → 1 1
+
+/* 📃 Dynamically creating RegExp objects
+  # 
+*/
+
+let name = "harry";
+let text = "Harry is a suspicious character.";
+let regexp = new RegExp("\\b(" + name + ")\\b", "gi");
+console.log(text.replace(regexp, "_$1_"));
+// → _Harry_ is a suspicious character.
+
+let name2 = "dea+hl[]rd";
+let text2 = "This dea+hl[]rd guy is super annoying.";
+let escaped = name2.replace(/[\\[.+*?(){|^$]/g, "\\$&");
+let regexp2 = new RegExp("\\b" + escaped + "\\b", "gi");
+console.log(text2.replace(regexp2, "_$&_"));
+// → This _dea+hl[]rd_ guy is super annoying
