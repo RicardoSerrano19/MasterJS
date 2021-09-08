@@ -222,3 +222,14 @@ let escaped = name2.replace(/[\\[.+*?(){|^$]/g, "\\$&");
 let regexp2 = new RegExp("\\b" + escaped + "\\b", "gi");
 console.log(text2.replace(regexp2, "_$&_"));
 // → This _dea+hl[]rd_ guy is super annoying
+
+/* 📃 The search method
+  # The indexOf method on strings cannot be called with a regular expres-
+sion. But there is another method, search , that does expect a regular
+expression. Like indexOf , it returns the first index on which the expres-
+sion was found, or -1 when it wasn’t found.
+*/
+
+console.log("  word".search(/\S/)); // → 2
+console.log("  ".search(/\S/)); // → -1
+
