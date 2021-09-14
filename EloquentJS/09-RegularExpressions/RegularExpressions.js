@@ -253,3 +253,22 @@ console.log(digit.exec("here it is: 1")); // → ["1"]
 console.log(digit.exec("and now: 1")); // → null (return null because exec automatic update last index and doesnt find nothing after that index.)
 
 console.log("Banana".match(/an/g)); // → ["an", "an"]
+
+/* 📃 Looping over matches
+  # A common thing to do is to scan through all occurrences of a pattern
+in a string, in a way that gives us access to the match object in the loop
+body
+*/
+
+let inputLoop = "A string with 3 numbers in it... 42 and 88.";
+let numberLoop = /\b\d+\b/g;
+let matchLoop;
+while(matchLoop = numberLoop.exec(inputLoop)){
+  const number = matchLoop[0];
+  const index = matchLoop.index;
+  console.log(`Found ${number} at ${index}`);
+}
+
+// → Found 3 at 14
+// Found 42 at 33
+// Found 88 at 40
