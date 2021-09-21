@@ -49,3 +49,23 @@ const weekDay = function() {
 }();
 
 console.log(weekDay.name(weekDay.number("Sunday"))); // → Sunday
+
+/* 📃 Evaluating data as code
+  # There are several ways to take data (a string of code) and run it as part of the current program.
+*/
+
+//Using operator *eval*, wich will execute a string in the current scope.
+const x = 1;
+function evalAndReturnX(code) {
+  eval(code);
+  return x;
+}
+console.log(evalAndReturnX("var x = 2")); // → 2
+console.log(x); // → 1
+
+// Use the *Function* constructor. It takes two arguments: a string containing a comma-separated list of argument names and a a string containing the function body.
+
+let plusOne = Function("n", "return n + 1");
+console.log(plusOne(4)); // → 5
+
+//This is precisely what we need for a module system. Wrap the module¿s code in a function an use that functions's scope as module scope
