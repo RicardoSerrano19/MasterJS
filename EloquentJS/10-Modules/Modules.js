@@ -69,3 +69,30 @@ let plusOne = Function("n", "return n + 1");
 console.log(plusOne(4)); // → 5
 
 //This is precisely what we need for a module system. Wrap the module¿s code in a function an use that functions's scope as module scope
+
+
+/* 📃 CommonJS
+  # There are several ways to take data (a string of code) and run it as part of the current program.
+  The main concept in CommonJS modules is a function called require. Whe you call this with the module name of a dependency, it makes sure the module is loaded and returns its interface.
+*/
+
+// ----------------------------------------- File 1
+const ordinal = require("ordinal");
+const { days, months } = require("date-names");
+
+exports.formatDate = function(date, format) {
+  return format.replace(/YYYY|M(MMM)?|Do?|dddd/g, tag => {
+    if (tag == "YYYY") return date.getFullYear();
+    if (tag == "M") return date.getMonth();
+    if (tag == "MMMM") return months[date.getMonth()];
+    if (tag == "D") return date.getDate();
+    if (tag == "Do") return ordinal(date.getDate());
+    if (tag == "dddd") return days[date.getDay()];
+  });
+};
+
+// ----------------------------------------- File 2
+const { formatDate } = require("./format-date");
+
+console.log(formatDate(new Date(2017, 9, 13), "dddd the Do"));
+// → Friday the 13th
