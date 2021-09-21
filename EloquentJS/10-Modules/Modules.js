@@ -96,3 +96,23 @@ const { formatDate } = require("./format-date");
 
 console.log(formatDate(new Date(2017, 9, 13), "dddd the Do"));
 // → Friday the 13th
+
+
+/* 📃 ECMAScript Modules
+  # The main concepts of dependencies and interfaces. The notation is now integrated into the lenguage. Instead of calling a function to acces a dependency. With the special *import* keyword
+*/
+
+import ordinal from 'ordinal';
+import {days, months} from 'date-names';
+
+export function formatDate(date, format){
+    /* ... */
+}
+
+//Create a default export, write export default before an expression, a function declaration or a class declaration
+export default ['Winter', 'Spring', 'Summer', 'Autumn']
+export default function plusOne(n){return n + 1}
+
+//Rename imported binding
+import { days as dayNames } from 'date-names';
+console.log(dayNames.length); // → 7
