@@ -116,3 +116,12 @@ export default function plusOne(n){return n + 1}
 //Rename imported binding
 import { days as dayNames } from 'date-names';
 console.log(dayNames.length); // → 7
+
+
+/* 📃 Building and bundling
+  # Because fetching a single big file tends to be faster than fetching a lot of tiny ones, web programmers have started using tools that roll their programs( wich they painstakingly split into modules) bacj into a single big file before they publich in to the Web.
+  Such tools are called *bundlers*
+
+  Apart from the number of files, the size of the files also determines how fast they can be transferred over the network. Thus, the JS Community has invented *minifiers*. 
+  These are tools that take JS program and make it smaller by automatically removing comments and whitespace, renaming binding, and replacing pieces of code with equivalent code that make up less space.
+*/
