@@ -125,3 +125,11 @@ console.log(dayNames.length); // → 7
   Apart from the number of files, the size of the files also determines how fast they can be transferred over the network. Thus, the JS Community has invented *minifiers*. 
   These are tools that take JS program and make it smaller by automatically removing comments and whitespace, renaming binding, and replacing pieces of code with equivalent code that make up less space.
 */
+
+
+/* 📃 Module design
+  # Structuring programs is one of the subtler aspects of programming. Any nontrivial piece of functionality can be modeled in various ways.
+
+  One aspect of module design is ease of use. It is helpful if your interface is simple and predictable.
+
+*/
