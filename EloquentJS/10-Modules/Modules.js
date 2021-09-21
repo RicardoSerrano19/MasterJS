@@ -1,4 +1,3 @@
-
 /* 📃 Modules
   # The ideal program has a crystal-clear structure. The way it works is easy to explain, and each part plays a well-defined role.
 
@@ -13,7 +12,6 @@
   The relations between modules are called *dependencies*. When module needs a piece from another module, it is said to depend on that module.
 */
 
-
 /* 📃 Packages
   # One of the advantages of building a program out of separate pieces, and being actually able to run those pieces on their own, is that you might be able to apply the same piece in different programs.
 
@@ -25,3 +23,29 @@
 
   Software is cheap to copy, so once someone has wirtten it, distributing it to other people is an efficient process.
 */
+
+/* 📃 Improvised modules
+  # This is the old way to create modules, but it is mostly obsolete now.
+*/
+
+const weekDay = function() {
+  const names = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  return {
+    name(number) {
+      return names[number];
+    },
+    number(name) {
+      return names.indexOf(name);
+    }
+  };
+}();
+
+console.log(weekDay.name(weekDay.number("Sunday"))); // → Sunday
