@@ -1,0 +1,14 @@
+{
+  "name": "11-asynchronousprogramming",
+  "version": "1.0.0",
+  "main": "AsynchronousProgramming.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
+}
+ 
