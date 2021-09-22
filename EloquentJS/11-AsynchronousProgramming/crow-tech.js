@@ -1,4 +1,3 @@
-(function() {
   const connections = [
     "Church Tower-Sportsgrounds", "Church Tower-Big Maple", "Big Maple-Sportsgrounds",
     "Big Maple-Woods", "Big Maple-Fabienne's Garden", "Fabienne's Garden-Woods",
@@ -101,37 +100,9 @@
     }
   }
 
-  let network = new Network(connections, storageFor)
-  exports.bigOak = network.nodes["Big Oak"]
-  exports.everywhere = network.everywhere.bind(network)
-  exports.defineRequestType = network.defineRequestType.bind(network)
+  const network = new Network(connections, storageFor)
+  const bigOak = network.nodes["Big Oak"]
+  const everywhere = network.everywhere.bind(network)
+  const defineRequestType = network.defineRequestType.bind(network)
 
-  if (typeof __sandbox != "undefined") {
-    __sandbox.handleDeps = false
-    __sandbox.notify.onLoad = () => {
-      // Kludge to make sure some functions are delayed until the
-      // nodes have been running for 500ms, to give them a chance to
-      // propagate network information.
-      let waitFor = Date.now() + 500
-      function wrapWaiting(f) {
-        return function(...args) {
-          let wait = waitFor - Date.now()
-          if (wait <= 0) return f(...args)
-          return new Promise(ok => setTimeout(ok, wait)).then(() => f(...args))
-        }
-      }
-      for (let n of ["routeRequest", "findInStorage", "chicks"])
-        window[n] = wrapWaiting(window[n])
-    }
-  }
-
-  if (typeof window != "undefined") {
-    window.require = name => {
-      if (name != "./crow-tech") throw new Error("Crow nests can only require \"./crow-tech\"")
-      return exports
-    }
-  } else if (typeof module != "undefined" && module.exports) {
-    module.exports = exports
-  }
-})()
-
+  export {bigOak, everywhere, defineRequestType};
