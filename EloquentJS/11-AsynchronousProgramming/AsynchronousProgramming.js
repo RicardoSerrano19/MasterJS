@@ -57,3 +57,24 @@ function storage(nest, name){
 
 storage(bigOak, 'enemies')
   .then(value => console.log("Got", value));
+
+
+  /* 📃 Failure
+  # Promises can be either resolved (the action finished successfully) or rejected (it failed).
+
+  When a handler throws an exception, the exception value is used as the reason.
+  There's a Promise.reject function that createa a new rejected promise.
+  
+  Promises have a catch method that registers a handler to be called when the promise is rejected.
+*/
+
+new Promise((_, reject) => reject(new Error('Fail')))
+  .then(value => console.log('Handler 1'))
+  .catch(reason => {
+    console.log('Caught failure' + reason);
+    return 'nothing';
+  })
+  .then(value => console.log('Handler 2', value));
+
+// → Caught failure Error: Fail
+// → Handler 2 nothing
