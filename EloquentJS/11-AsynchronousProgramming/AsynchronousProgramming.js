@@ -34,3 +34,26 @@ defineRequestType('note', (nest, content, source, done) =>{
   done();
 });
 bigOak.send('Cow Pasture', 'note', 'Let\'s caw loudly at 7PM', () => console.log('Note delivered.'));
+
+
+/* 📃 Promises
+  # Working with abstract concepts is often easier when those concepts can be represented by values. In the case of asynchronous actions, you could, instead of arranging for a function to be callet at some point in the future, return an object that represents this future event.
+  
+  A *promise* is an asynchronous action that may complete at some point and produce a value. It is able to notify anyone who is interested when its value is available.
+
+*/
+
+let fiftenn = Promise.resolve(15);
+fiftenn.then(value => console.log(`Got ${value}`)); // → Got 15
+
+// To get the result of a promise, you can use its *then method*. This registers a callback function to be called when the promise resolves and produces a value.
+// Its posible add multiple callbacks to a single promise, and they will be called, even if you add them after the promise has already resolved (finished)
+
+function storage(nest, name){
+  return new Promise(resolve =>{
+    nest.readStorage(name, result => resolve(result));
+  })
+}
+
+storage(bigOak, 'enemies')
+  .then(value => console.log("Got", value));
