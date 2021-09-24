@@ -115,3 +115,22 @@ function requestType(name, handler){
     }
   });
 }
+
+
+/* 📃 Collections of promises
+  # When running with collections of promises running at the same time. Promise.all function can be useful. It returns a promise that waits for all of the promises in the array to resolve and then resolves to an array of the values that these promises produced.
+
+  If any promise is rejected, the result of Promise.all it itself rejected
+*/
+requestType("ping", () => "pong");
+function availableNeighbors(nest) {
+  let requests = nest.neighbors.map(neighbor => {
+    return request(nest, neighbor, "ping").then(
+      () => true,
+      () => false
+    );
+  });
+  return Promise.all(requests).then(result => {
+    return nest.neighbors.filter((_, i) => result[i]);
+  });
+}
