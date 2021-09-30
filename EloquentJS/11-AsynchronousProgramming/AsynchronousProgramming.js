@@ -282,5 +282,34 @@ for(let power of powers(3)){
 Group.prototype[Symbol.iterator] = function*(){
   for(let i = 0; i < this.members.length; i++){
     yield this.member[i];
-  }
+
+    
+/* 📃 The event loop
+  # Asynchronous programs are executed piece by piece. Each piece may start some actions and schedule code to be executed when the action finishes or fails. In between these pieces, the program sits idle, waiting for the next action
+*/
+
+try{
+  setTimeout(() => {
+    throw new Error('Woosh')
+  }, 20)
+}catch(_){
+  // This will not run
+  console.log('Caught!')
 }
+
+let start = Date.now();
+setTimeout(() => {
+  console.log('Timeout ran at', Date.now() - start)
+}, 20);
+while(Date.now() < start + 50){}
+console.log('Wasted time until', Date.now() - start)
+// → Wasted time until 50
+// → Timeout ran at 55
+
+
+// Promises always resolve or reject as a new event. Even if a promise is already resolved, waiting for it will cause your callback to run after the current script finished, rather than right away.
+
+Promise.resolve('Done').then(console.log)
+console.log('Me first!')
+// → Me first!
+// → Done
