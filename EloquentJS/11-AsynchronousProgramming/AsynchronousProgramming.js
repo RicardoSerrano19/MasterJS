@@ -224,13 +224,6 @@ requestType("route", (nest, { target, type, content }) => {
 
 requestType("storage", (nest, name) => storage(nest, name));
 
-function findInStorage(nest, name) {
-  return storage(nest, name).then(found => {
-    if (found != null) return found;
-    else return findInRemoteStorage(nest, name);
-  });
-}
-
 function network(nest) {
   return Array.from(nest.state.connections.keys());
 }
@@ -265,4 +258,29 @@ async function findInStorage(nest, name) {
     } catch (_) {}
   }
   throw new Error("Not found");
+}
+
+
+
+/* 📃 Generators
+  # The ability of functions to be paused and then resumen again is not esclusive to async functions. JS also has a feature called generator functions
+
+  Define a function with 'function*' (placing an asterisk after the word function)
+*/
+
+function* powers(n){
+  for(let current = n;; current*=n){
+    yield current;
+  }
+}
+
+for(let power of powers(3)){
+  if(power > 50) break;
+  console.log(power);
+}
+
+Group.prototype[Symbol.iterator] = function*(){
+  for(let i = 0; i < this.members.length; i++){
+    yield this.member[i];
+  }
 }
