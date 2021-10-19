@@ -32,3 +32,21 @@
     2.- Server: Wich server is requesting the document from.
     3.- Path: String that identifies the specific document(or resource) we are interested in.
 */
+
+
+/* 📃 HTML */
+
+/* 
+    HTML, which stands for Hypertext Markup Language, is the document
+    format used for web pages. An HTML document contains text, as well
+    as tags that give structure to the text, describing things such as links,
+    paragraphs, and headings.
+
+    The tags, wrapped in angle brackets ( < and > , the symbols for less
+    than and greater than), provide information about the structure of the
+    document.
+
+    HTML documents have a head and a body. The head contains information about the document, and the body contains the document itself.
+
+    Some opening tags, contain extra information in the form of *name='value'* pairs. These are called *attributes*
+*/
