@@ -50,3 +50,15 @@
 
     Some opening tags, contain extra information in the form of *name='value'* pairs. These are called *attributes*
 */
+
+/* 📃 HTML and JavaScript */
+
+/* 
+    The <script> tag allows us to include a piece of JavaScript in a document
+
+    -> <script>alert("hello!");</script>
+
+    The tag has a *src* attribute to fetch a script file(a text file containing a JS program) from a URL.
+
+    -> <script src="code/hello.js"></script>
+*/
