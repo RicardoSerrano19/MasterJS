@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document Structure</title>
+</head>
+<body>
+    <p>My ostrich Gertrude:</p>
+    <p><img id="gertrude" src="img/ostrich.png"></p>
+</body>
+</html>
+
+<script>
+    const ostrich = document.getElementById('gertrude');
+    console.log(ostrich.src);
+
+    //Best with querySelector
+    const ostrichQuery = document.querySelector('#gertrude');
+    console.log(ostrich.src);
+
+</script>
+<!-- 
+    If we want to find a specific node in the document there are different method like
+     -> getElement or querySelector
+    
+-->
