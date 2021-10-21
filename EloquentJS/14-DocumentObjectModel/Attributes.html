@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Attributes</title>
+</head>
+<body>
+
+    <p data-classified="secret" class="mx-10">The launch code is 95671210.</p>
+    <p data-classified="unclassified">I have two feet.</p>
+
+    <script>
+        let paras = document.querySelectorAll('p');
+        for(let para of Array.from(paras)){
+            if(para.getAttribute('data-classified') === 'secret'){
+                para.remove();
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!--
+    HTML allows to set any attribute you want on nodes.
+    Its recommended to prefix the name of such made-up attributes with *data-* before to ensure they dont conflict with any other attributes.
+
+    className: To access the name of 'class'
+    getAttribute: To retrieve the given attribute
+    setAttribute: To achieve the name of the attribute
+    atributes: To get the collection of attributes.
+-->
