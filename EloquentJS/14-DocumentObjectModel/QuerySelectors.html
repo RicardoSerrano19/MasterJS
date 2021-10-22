@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Query Selectors</title>
+</head>
+<body>
+    <p>And if you go chasing
+        <span class="animal">rabbits</span></p>
+    <p>And you know you're going to fall</p>
+
+    <p>Tell 'em a 
+        <span class="character">hookah smoking
+            <span class="animal">caterpillar</span>
+        </span>
+    </p>
+
+    <p>Has given you the call</p>
+
+    <script>
+        function count(selector){
+            return document.querySelectorAll('selector').length;
+        }
+
+        console.log(count("p")); // All <p> elements
+        // → 4
+        console.log(count(".animal")); // Class animal
+        // → 2
+        console.log(count("p .animal")); // Animal inside of <p>
+        // → 2
+        console.log(count("p > .animal")); // Direct child of <p>
+        // → 1
+
+    </script>
+</body>
+</html>
+
+<!--
+    querySelectorAll: Object NodeList with all elements matched
+    querySelector: A specific element, only returns a single element. If there are more than one, it return the first match.
+-->
