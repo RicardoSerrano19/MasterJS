@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Layout</title>
+</head>
+<body>
+    <p style="border: 3px solid red">
+        I'm boxed in
+    </p>
+
+    <p><span id="one"></span></p>
+    <p><span id="two"></span></p>
+
+    <script>
+        let para = document.body.getElementsByTagName("p")[0];
+        console.log("clientHeight:", para.clientHeight);
+        console.log("offsetHeight:", para.offsetHeight);
+
+        function time(name, action){
+            let start = Date.now();
+            action();
+            console.log(name, 'took', Date.now() - start, 'ms');
+        }
+
+        time('naive', () =>{
+            let target = document.querySelector('#one');
+            while(target.offsetWidth < 2000){
+                target.appendChild(document.createTextNode('X'))            
+            }
+        });
+
+        time("clever", function() {
+            let target = document.querySelector('#two');
+            target.appendChild(document.createTextNode("XXXXX"));
+            let total = Math.ceil(2000 / (target.offsetWidth / 5));
+            target.firstChild.nodeValue = "X".repeat(total);
+        });
+    </script>
+</body>
+</html>
+
+
+<!--
+    offsetWidth and offsetHeight properties gives the total space the element takes up in pixels.
+    
+    clientWidth and clientHeight properties gives the size of the space inside the element, ignoring the border width.
+
+    getBoundingClientRect(): Returns object with top, bottom, left and right properties, indicating the pixel position of the side of the element, also the height and width and the X and Y coord.
+-->
