@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Build a Table</title>
+</head>
+<body>
+
+    <h1>Mountains</h1>
+    <div id="mountains"></div>
+
+
+    <script>
+        const MOUNTAINS = [
+            {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+            {name: "Everest", height: 8848, place: "Nepal"},
+            {name: "Mount Fuji", height: 3776, place: "Japan"},
+            {name: "Vaalserberg", height: 323, place: "Netherlands"},
+            {name: "Denali", height: 6168, place: "United States"},
+            {name: "Popocatepetl", height: 5465, place: "Mexico"},
+            {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+        ];
+        
+        let mountains = document.querySelector('#mountains');
+        const createElement = (tag) => document.createElement(tag);
+        const createCell = (type, content) => {
+                let cell = createElement(type);
+                cell.appendChild(document.createTextNode(content));
+                return cell;
+        }
+
+        function createTable(data){
+            let table = createElement('table');
+
+            let rowHeader = createElement('tr');
+            Object.keys(data[0]).forEach(key =>{
+                rowHeader.appendChild(createCell('th', key))
+            })
+            table.appendChild(rowHeader);
+
+            for(let mountain of data){
+                let rowContent = createElement('tr');
+                Object.values(mountain).forEach(value => {
+                    let cell = createCell('td', value);
+                    if(typeof value === 'number') cell.style.textAlign = 'right'
+                    rowContent.appendChild(cell)
+                })
+                table.appendChild(rowContent);
+            }
+
+            return table;
+        }
+        
+        mountains.appendChild(createTable(MOUNTAINS));
+    </script>
+</body>
+</html>
+
+<!--
+    Given a data set of mountains, an array of objects with name , height
+    , and place properties, generate the DOM structure for a table that
+    enumerates the objects. It should have one column per key and one
+    row per object, plus a header row with <th> elements at the top, listing
+    the column names.
+
+    Write this so that the columns are automatically derived from the
+    objects, by taking the property names of the first object in the data.
+    
+    Add the resulting table to the element with an id attribute of "
+    mountains" so that it becomes visible in the document.
+    Once you have this working, right-align cells that contain number
+    values by setting their style.textAlign property to "right" .
+-->
