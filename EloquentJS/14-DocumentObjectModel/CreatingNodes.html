@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Creating Nodes</title>
+</head>
+<body>
+    <p>The <img src="img/cat.png" alt="Cat"> in the
+    <img src="img/hat.png" alt="Hat">.</p>
+    <p><button onclick="replaceImages()">Replace</button></p>
+
+
+    <blockquote id="quote">
+        No book can ever be finished. While working on it we learn
+        just enough to find it immature the moment we turn away
+        from it.
+    </blockquote>
+
+    <script>
+        function replaceImages(){
+            let images = document.querySelectorAll('img');
+            for(let i = images.length - 1; i >= 0; i--){
+                let image = images[i];
+                if(image.alt){
+                    const text = document.createTextNode(image.alt);
+                    image.parentNode.replaceChild(text, image);
+                }
+            }
+        }
+
+        function elt(type, ...children){
+            let node = document.createElement(type);
+            for(let child of children){
+                if(typeof child != 'string') node.appendChild(child);
+                else node.appendChild(document.createTextNode(child));
+            }
+            return node;
+        }
+
+        document.getElementById('quote').appendChild(
+            elt('footer', '-',
+                elt('strong', 'Karl Popper'), 
+                ", preface to the second edition of ",
+                elt('em', 'The open Society and Its Enemies'),
+                ", 1950"
+            )
+        );
+    </script>
+</body>
+</html>
+
+
+<!--
+    document.querySelectorAll: Give us a node list with all elements defined.
+    document.createTextNode: Create text node that we can insert a string.
+    document.createElement: Create element give it a tag name.
+
+-->

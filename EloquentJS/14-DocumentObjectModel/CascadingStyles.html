@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cascadin Styles</title>
+    <style>
+        strong{
+            font-style: italic;
+            color: gray;
+        }
+        .subtle{
+            color: gray;
+            font-size: 80%;
+        }
+        #header{
+            background: blue;
+            color:white;
+        }
+        /* p elements with id main and with classes a and b*/
+        p#main.a.b{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p>Now <strong>strong text</strong> is italic and gray.</p>
+</body>
+</html>
+
+<!--
+    . = For classes
+    # = For id's
+    p > a = All <a> tags taht are direct children of <p> tags.
+    p a = All <a> tags inside <p> tags.
+-->

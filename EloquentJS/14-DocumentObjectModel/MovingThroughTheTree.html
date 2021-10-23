@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document Structure</title>
+</head>
+<body>
+    <h1>My home page</h1>
+    <p>Hello, I am Marijn and this is my home page.</p>
+    <p>I also wrote a book! Read it
+        <a href="http://eloquentjavascript.net">here</a>.
+    </p>
+</body>
+</html>
+
+<script>
+    function talksAbout(node, string){
+        if(node.nodeType == Node.ELEMENT_NODE && node.nodeName != 'SCRIPT'){
+            for(let child of node.childNodes){
+                if(talksAbout(child, string)){
+                    return true;
+                }
+            }
+            return false;
+        }else if(node.nodeType == Node.TEXT_NODE){
+            return node.nodeValue.indexOf(string) > -1;
+        }
+    }
+
+    console.log(talksAbout(document.body, 'book'));
+</script>
+<!-- 
+    Every node has a *parentNode*
+    childNodes: Property that points to an array-like object holding its children.
+    children: Only element type 1(ELEMENT_NODE)
+    firstChild - lastChild: Properties point to the first and last child element or null for nodes without children.
+    previousSibling - nextSibling: Point to adjacent nodes.
+    
+-->
