@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event and DOM Nodes</title>
+</head>
+<body>
+    
+    <button>Click me</button>
+    <p>No handler here.</p>
+
+    <button id="once">Act-one button</button>
+
+    <script>
+        let button = document.querySelector('button');
+        button.addEventListener('click', () =>{
+            console.log('Button clicked');
+        });
+
+        let btnOnce = document.querySelector('#once');
+        const once = () =>{
+            console.log('Donee. Removing eventListener(once)');
+            btnOnce.removeEventListener('click', once);
+        };
+
+        btnOnce.addEventListener('click', once);
+    </script>
+</body>
+</html>
+
+<!--
+    Event Listeners are called only when the event happens in the context of the object they are registered on
+
+    node.addEventListener: Give listener to trigger a action.
+    node.removeEventListener: Delete listener.
+-->
