@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Objects</title>
+</head>
+<body>
+    <button>CLick me any way you want</button>
+
+    <script>
+        const MOUSEBUTTONS = {
+            0: 'Left',
+            1: 'Middle',
+            2: 'Right'
+        }
+
+        let btn = document.querySelector('button');
+        btn.addEventListener('mousedown', event =>{
+            const buttonPressed = MOUSEBUTTONS[event.button] || 'Button Undefined';
+            console.log(buttonPressed);
+        });
+    </script>
+</body>
+</html>
+
+<!--
+    Event handler functions are passed an argument: *the event object*.
+    This object holds additional information about the event.
+
+    The information stored in an event object differs per type of event.
+-->
