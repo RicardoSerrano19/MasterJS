@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Propagation</title>
+</head>
+<body>
+
+    <p>A paragraph with a <button>button</button>.</p>
+
+
+    <button>A</button>
+    <button>B</button>
+    <button>C</button>
+
+    <script>
+        let para = document.querySelector('p');
+        let btn = document.querySelector('button');
+
+        para.addEventListener('mousedown', () =>{
+            console.log('Handler for paragraph...');
+        });
+
+        btn.addEventListener('mousedown', (event) =>{
+            console.log('Handler for button...');
+            if(event.button === 2) event.stopPropagation();
+        });
+
+
+        document.body.addEventListener('click', event =>{
+            if(event.target.nodeName === 'BUTTON'){
+                console.log('Clicked', event.target.textContent);
+            }
+        });
+    </script>
+    
+</body>
+</html>
+
+<!--
+    Handlers registered on nodes with children will also receive events that happen in the children.
+    If a button inside a paragraph is clicked, event handlers on the paragraph will also see the click event.
+    This is called *propagation*.
+    Event handler can call the event.stopPropagation() method on the vent object to prevend handlers further up from receiving the event
+
+    Most event objects have a *target* property that refers to the node where they originated.
+    **** IMPORTANT *** 
+    If you have a node containing a long list of buttons, it may be more convenient to register a single click handler on the outer node and have it use the target property to figure out whether a button was clicked, rather than register indicidual handlers on all the buttons
+-->
