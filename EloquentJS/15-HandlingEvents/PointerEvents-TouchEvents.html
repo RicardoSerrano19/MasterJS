@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pointer Events - Touch Events</title>
+
+    <style>
+        dot { 
+            position: absolute; 
+            display: block;
+            border: 2px solid red; 
+            border-radius: 50px;
+            height: 100px; 
+            width: 100px; 
+        }
+    </style>
+</head>
+<body>
+        
+    <p>Touch this page</p>
+    
+    <script>
+        function update(event) {
+            for (let dot; dot = document.querySelector("dot");) {
+                dot.remove();
+            }
+            for (let i = 0; i < event.touches.length; i++) {
+                let {pageX, pageY} = event.touches[i];
+                let dot = document.createElement("dot");
+                dot.style.left = (pageX - 50) + "px";
+                dot.style.top = (pageY - 50) + "px";
+                document.body.appendChild(dot);
+            }
+        }
+
+        window.addEventListener("touchstart", update);
+        window.addEventListener("touchmove", update);
+        window.addEventListener("touchend", update);
+    </script>
+</body>
+</html>
