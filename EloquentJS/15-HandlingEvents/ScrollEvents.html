@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Scroll Events</title>
+
+    <style>
+        #progress{
+            border-bottom: 5px solid blue;
+            width: 0;
+            position: fixed;
+            top: 0; left: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="progress"></div>
+
+    <script>
+        //Create some content
+        document.body.appendChild(document.createTextNode(
+"supercalifragilisticexpialidocious ".repeat(1000)));
+    
+
+        let bar = document.querySelector("#progress");        
+        window.addEventListener("scroll", () => {
+            let max = document.body.scrollHeight - innerHeight;
+            bar.style.width = `${(pageYOffset / max) * 100}%`;
+        });
+    </script>
+</body>
+</html>
+
+<!--
+    Given an elementen a position of fidex acts much like an absolute position but also prevents it from scrolling along with the rest of the document.
+-->
