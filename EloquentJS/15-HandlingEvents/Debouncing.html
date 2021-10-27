@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Debouncing</title>
+</head>
+<body>
+    <textarea>Type something here...</textarea>
+
+    <p><strong>Mouse at 0, 0</strong></p>
+
+    <script>
+        let textarea = document.querySelector("textarea");
+        let timeout;
+        textarea.addEventListener("input",event => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => console.log("Typed!"), 500);
+        });
+
+        let strong = document.querySelector('strong');
+        let scheduled = null;
+        window.addEventListener('mousemove', event => {
+            if(!scheduled){
+                setTimeout(() => {
+                    strong.textContent =
+                        `Mouse at ${scheduled.pageX}, ${scheduled.pageY}`;
+                        scheduled = null;
+                }, 250);
+            }
+            scheduled = event;
+        });
+
+    </script>
+</body>
+</html>
+
+<!--
+    SOme type of events have the potential to fire rapidly, many times in a row.
+    When handling such events, you must be careful not to do anything too time- consuming or your handler will take up so much time that interaction with the document starts to feel slow.
+
+    If you do need to do something nontrivial in such a handler, you can use *setTimeout* to make sure you are not doing it too often. This is usually called debouncing the event
+-->

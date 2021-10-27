@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Handler</title>
+</head>
+<body>
+    <p>Click this document to activate the handler</p>
+
+    <script>
+        window.addEventListener('click', () =>{
+            console.log('You knocked?');
+        });
+    </script>
+</body>
+</html>
+
+<!--
+    The best mechanism for the system to actively notify our code when an aevent occurs.
+    Browsers do this by allowing us to register dunctions as *handlers* for specific events.
+
+    *window*: Binding refers to a built-in object provided by the browser. It represents the browser window that contains the document.
+-->

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mouse Trail</title>
+
+    <style>
+        .trail { /* className for the trail elements */
+            position: absolute;
+            height: 12px; width: 12px;
+            border-radius: 6px;
+            background: red;
+        }
+        body {
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+        let trail = [];
+        let cantTrail = 20;
+        for(let i = 0; i < cantTrail; i++){
+            let trailElement = document.createElement('div');
+            trailElement.className = 'trail';
+            trail.push(trailElement);
+            document.body.appendChild(trailElement);
+        }
+
+        let currentDot = 0;
+        window.addEventListener('mousemove', event => {
+            if(currentDot < cantTrail){
+                trail[currentDot].style.left = event.pageX + 'px'
+                trail[currentDot].style.top = event.pageY + 'px'
+                currentDot++;
+            }else{
+                currentDot = 0;
+            }
+        })    
+    </script>
+</body>
+</html>
+
+<!--
+    In JavaScript’s early days, which was the high time of gaudy home
+    pages with lots of animated images, people came up with some truly
+    inspiring ways to use the language.
+    One of these was the mouse trail—a series of elements that would
+    follow the mouse pointer as you moved it across the page.
+    In this exercise, I want you to implement a mouse trail. Use abso-
+    lutely positioned <div> elements with a fixed size and background color
+    (refer to the code in the “Mouse Clicks” section for an example). Create
+    a bunch of such elements and, when the mouse moves, display them in
+    the wake of the mouse pointer.
+    There are various possible approaches here. You can make your so-
+    lution as simple or as complex as you want. A simple solution to start
+    with is to keep a fixed number of trail elements and cycle through
+    them, moving the next one to the mouse’s current position every time
+    a "mousemove" event occurs.
+-->

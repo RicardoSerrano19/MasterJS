@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabs</title>
+</head>
+<body>
+    <tab-panel>
+        <div data-tabname="one">Tab one</div>
+        <div data-tabname="two">Tab two</div>
+        <div data-tabname="three">Tab three</div>
+        <div data-tabname="four">Tab four</div>
+    </tab-panel>
+
+    <script>
+
+        function asTabs(node) {
+            let tabNames = [];
+
+            for(let child of node.children){
+               const tabName = child.getAttribute('data-tabname');
+               tabNames.push(tabName);
+               child.style.display = 'none';
+            }
+
+            const divElements = document.createElement('div');
+            for(let name of tabNames){
+                const btn = document.createElement('button');
+                btn.textContent = name;
+                btn.addEventListener('focus', event =>{
+                    event.target.style.color = 'red';
+                    event.target.style.fontWeight = 'bold';
+                    showElement(name, '')
+                });
+                btn.addEventListener('blur', event =>{
+                    event.target.style.color = '';
+                    event.target.style.fontWeight = '';
+                    showElement(name, 'none')
+                });
+                divElements.appendChild(btn);
+            }
+            node.prepend(divElements);
+
+            function showElement(nodeName, state){
+                for(let i = 1; i < node.children.length; i++){
+                    const child = node.children[i];
+                    if(child.getAttribute('data-tabname') === nodeName){
+                        child.style.display = state;
+                    }
+                }
+            }
+        }
+
+        
+        asTabs(document.querySelector("tab-panel"));
+    </script>
+</body>
+</html>
+
+<!--
+    Tabbed panels are widely used in user interfaces. They allow you to
+    select an interface panel by choosing from a number of tabs “sticking
+    out” above an element.
+
+    In this exercise you must implement a simple tabbed interface. Write a function, asTabs , that takes a DOM node and creates a tabbed inter-
+    face showing the child elements of that node. It should insert a list of
+    <button> elements at the top of the node, one for each child element,
+    containing text retrieved from the data-tabname attribute of the child.
+    All but one of the original children should be hidden (given a display
+    style of none ). The currently visible node can be selected by clicking
+    the buttons.
+
+    When that works, extend it to style the button for the currently
+    selected tab differently so that it is obvious which tab is selected.
+-->
