@@ -75,7 +75,6 @@
             this.height = rows.length;
             this.width = rows[0].length;
             this.startActors = [];
-            console.log(rows);
 
             this.rows = rows.map((row, y) => {
                 return row.map((ch, x) => {
@@ -414,13 +413,19 @@
         }
 
         async function runGame(plans, Display) {
+            let lives = 3;
             for (let level = 0; level < plans.length;) {
+            console.log("Lives left: " + lives);
             let status = await runLevel(new Level(plans[level]),
             Display);
-            console.log(status)
+            if (status == "lost") lives--;
             if (status == "won") level++;
+                if(lives == 0) {
+                    console.log("You've LOST!");
+                    break;
+                }
+            if(level == plans.length) console.log("You've won!");
             }
-            console.log("You've won!");
         }
 
         var GAME_LEVELS = [`
